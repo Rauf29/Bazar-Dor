@@ -1,3 +1,4 @@
+import Footer from '@/components/Footer';
 import Header from '@/components/Header';
 import Marquee from '@/components/Marquee';
 import type { Metadata } from 'next';
@@ -28,7 +29,9 @@ export default function RootLayout({ children }: LayoutProps<'/'>) {
 
 				<Marquee />
 
-				{children}
+				<div className="flex-1">{children}</div>
+
+				<Footer />
 			</body>
 		</html>
 	);

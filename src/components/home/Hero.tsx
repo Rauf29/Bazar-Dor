@@ -1,5 +1,4 @@
 import Image from 'next/image';
-import Link from 'next/link';
 
 export default function Hero() {
 	const date = new Date().toLocaleDateString('bn-BD', {
@@ -23,12 +22,12 @@ export default function Hero() {
 					পরিবর্তন এক জায়গায়।
 				</p>
 
-				<Link
+				<a
 					href="#all-products"
 					className="mt-6 inline-flex rounded-lg bg-[#078b45] px-5 py-3 text-sm font-bold text-white shadow-[0_3px_0_#066a36] transition-colors hover:bg-[#06783c]"
 				>
 					সব পণ্য দেখুন
-				</Link>
+				</a>
 			</div>
 
 			<Image

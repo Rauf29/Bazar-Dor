@@ -76,13 +76,6 @@ const SignUp = () => {
 					</button>
 				</fieldset>
 			</form>
-
-			{/* <button onClick={handleGoogleSignIn} className="btn ">
-				Sign In With Google
-			</button>
-			<button onClick={handleGithubSignIn} className="btn ">
-				Sign In With Github
-			</button> */}
 		</div>
 	);
 };

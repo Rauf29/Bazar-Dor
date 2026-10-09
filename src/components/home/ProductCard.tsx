@@ -5,9 +5,18 @@ type Props = {
 	product: Product;
 };
 
+const UNIT_LABELS: Record<string, string> = {
+	kg: 'প্রতি কেজি',
+	litre: 'প্রতি লিটার',
+	dozen: 'প্রতি ডজন',
+	piece: 'প্রতি পিস',
+};
+
 export default function ProductCard({ product }: Props) {
 	const isUp = product.direction === 'up';
 	const isDown = product.direction === 'down';
+	const unitLabel =
+		UNIT_LABELS[product.unit] ?? `প্রতি ${product.unit}`;
 
 	return (
 		<Link
@@ -24,7 +33,7 @@ export default function ProductCard({ product }: Props) {
 						{product.name}
 					</h3>
 					<p className="mt-0.5 text-xs text-[#68746c]">
-						{product.unit}
+						{unitLabel}
 					</p>
 				</div>
 			</div>

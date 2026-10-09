@@ -1,8 +1,7 @@
+import type { Product } from '@/products';
 import ProductCard from './ProductCard';
-import { getProducts } from './products';
 
-export default async function AllProducts() {
-	const products = await getProducts();
+export default function AllProducts({ products }: { products: Product[] }) {
 	return (
 		<section id="all-products" className="scroll-mt-36">
 			<div className="mb-4">

@@ -1,13 +1,13 @@
+import type { Product } from '@/products';
 import ProductCard from './ProductCard';
-import { getProducts } from './products';
 
 type Props = {
 	title: string;
 	direction: 'up' | 'down';
+	products: Product[];
 };
 
-export default async function PriceSection({ title, direction }: Props) {
-	const products = await getProducts();
+export default function PriceSection({ title, direction, products }: Props) {
 	const filteredProducts = products
 		.filter(product => product.direction === direction)
 		.sort((a, b) => Math.abs(b.change) - Math.abs(a.change))

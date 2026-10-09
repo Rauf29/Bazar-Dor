@@ -22,11 +22,27 @@ type ApiProduct = {
 	};
 };
 
-const API_URL = 'https://api.abcz.workers.dev/api/bazardor/products';
+export type Category = {
+	id: string;
+	slug: string;
+	name: string;
+	icon: string;
+};
+
+type ApiCategory = {
+	id: string;
+	slug: string;
+	nameBn: string;
+	icon?: string | null;
+};
+
+const PRODUCTS_API_URL = 'https://api.abcz.workers.dev/api/bazardor/products';
+const CATEGORIES_API_URL =
+	'https://api.abcz.workers.dev/api/bazardor/categories';
 
 export async function getProducts(): Promise<Product[]> {
 	try {
-		const res = await fetch(API_URL, {
+		const res = await fetch(PRODUCTS_API_URL, {
 			next: { revalidate: 300 },
 		});
 
@@ -43,6 +59,27 @@ export async function getProducts(): Promise<Product[]> {
 			price: item.today,
 			change: item.change.pct,
 			direction: item.change.dir === 'flat' ? 'same' : item.change.dir,
+		}));
+	} catch {
+		return [];
+	}
+}
+
+export async function getCategories(): Promise<Category[]> {
+	try {
+		const res = await fetch(CATEGORIES_API_URL, {
+			next: { revalidate: 300 },
+		});
+
+		if (!res.ok) return [];
+
+		const items: ApiCategory[] = await res.json();
+
+		return items.map(item => ({
+			id: item.id,
+			slug: item.slug,
+			name: item.nameBn,
+			icon: item.icon || '',
 		}));
 	} catch {
 		return [];

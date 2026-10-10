@@ -3,6 +3,7 @@
 import { authClient } from '@/lib/auth-client';
 import Image from 'next/image';
 import Link from 'next/link';
+import { toast } from 'react-toastify';
 
 export default function AccountMenu() {
 	const { data: session, isPending } = authClient.useSession();
@@ -34,13 +35,14 @@ export default function AccountMenu() {
 
 	const signOut = async () => {
 		await authClient.signOut();
+		toast.success('সাইন আউট হয়েছে');
 	};
 
 	return (
 		<details className="relative">
 			<summary className="flex cursor-pointer list-none items-center gap-2 rounded-xl px-2 py-1.5 transition-colors hover:bg-[#edf3ee] [&::-webkit-details-marker]:hidden">
 				<span className="flex size-9 items-center justify-center overflow-hidden rounded-full bg-[#e5f3e9] text-sm font-bold text-[#078b45]">
-					{user.image?.startsWith('/') ? (
+					{user.image?.startsWith('/') || user.image?.startsWith('http') ? (
 						<Image
 							src={user.image as string}
 							alt={user.name ?? ''}

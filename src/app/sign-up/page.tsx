@@ -2,10 +2,13 @@
 
 import { authClient } from '@/lib/auth-client';
 import Link from 'next/link';
-import { redirect } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import React from 'react';
+import { toast } from 'react-toastify';
 
 const SignUpPage = () => {
+	const router = useRouter();
+
 	const onSubmit = async (e: React.SubmitEvent<HTMLElement>) => {
 		e.preventDefault();
 
@@ -17,10 +20,8 @@ const SignUpPage = () => {
 			confirm: string;
 		};
 
-		console.log(user);
-
 		if (user.password !== user.confirm) {
-			console.log('password mismatch');
+			toast.error('দুই পাসওয়ার্ড মিলছে না');
 			return;
 		}
 
@@ -32,11 +33,12 @@ const SignUpPage = () => {
 		});
 
 		if (data) {
-			redirect('/');
+			toast.success('অ্যাকাউন্ট তৈরি হয়েছে');
+			setTimeout(() => router.push('/'), 1000);
 		}
 
 		if (error) {
-			console.log(error);
+			toast.error('সাইন আপ হয়নি, আবার চেষ্টা করুন');
 		}
 	};
 

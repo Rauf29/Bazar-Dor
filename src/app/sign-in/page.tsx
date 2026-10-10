@@ -2,10 +2,13 @@
 
 import { authClient } from '@/lib/auth-client';
 import Link from 'next/link';
-import { redirect } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 import React from 'react';
+import { toast } from 'react-toastify';
 
 const SignInPage = () => {
+	const router = useRouter();
+
 	const onSubmit = async (e: React.SubmitEvent<HTMLElement>) => {
 		e.preventDefault();
 
@@ -21,11 +24,12 @@ const SignInPage = () => {
 		});
 
 		if (data) {
-			redirect('/');
+			toast.success('সাইন ইন সফল হয়েছে');
+			setTimeout(() => router.push('/'), 1000);
 		}
 
 		if (error) {
-			console.log(error);
+			toast.error('ইমেইল বা পাসওয়ার্ড ভুল হয়েছে');
 		}
 	};
 

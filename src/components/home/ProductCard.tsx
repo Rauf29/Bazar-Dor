@@ -1,22 +1,15 @@
-import Link from 'next/link';
 import type { Product } from '@/products';
+import { UNIT_LABELS } from '@/products';
+import Link from 'next/link';
 
 type Props = {
 	product: Product;
 };
 
-const UNIT_LABELS: Record<string, string> = {
-	kg: 'প্রতি কেজি',
-	litre: 'প্রতি লিটার',
-	dozen: 'প্রতি ডজন',
-	piece: 'প্রতি পিস',
-};
-
 export default function ProductCard({ product }: Props) {
 	const isUp = product.direction === 'up';
 	const isDown = product.direction === 'down';
-	const unitLabel =
-		UNIT_LABELS[product.unit] ?? `প্রতি ${product.unit}`;
+	const unitLabel = UNIT_LABELS[product.unit] ?? `প্রতি ${product.unit}`;
 
 	return (
 		<Link
@@ -29,26 +22,24 @@ export default function ProductCard({ product }: Props) {
 				</div>
 
 				<div className="min-w-0">
-					<h3 className="truncate text-sm font-bold text-[#202821] sm:text-base">
+					<h3 className="truncate text-base font-bold text-[#202821] sm:text-lg">
 						{product.name}
 					</h3>
-					<p className="mt-0.5 text-xs text-[#68746c]">
-						{unitLabel}
-					</p>
+					<p className="mt-0.5 text-sm text-[#68746c]">{unitLabel}</p>
 				</div>
 			</div>
 
 			<div className="mt-3 flex items-end justify-between gap-2">
 				<div>
-					<p className="text-xs text-[#68746c]">আজকের দাম</p>
-					<p className="mt-0.5 text-lg font-extrabold leading-tight text-[#202821]">
+					<p className="text-sm text-[#68746c]">আজকের দাম</p>
+					<p className="mt-0.5 text-xl font-extrabold leading-tight text-[#202821]">
 						{product.price.toLocaleString('bn-BD')}{' '}
-						<span className="text-sm font-medium">টাকা</span>
+						<span className="text-base font-medium">টাকা</span>
 					</p>
 				</div>
 
 				<span
-					className={`shrink-0 rounded-full px-2 py-1 text-[11px] font-semibold ${
+					className={`shrink-0 rounded-full px-2 py-1 text-xs font-semibold ${
 						isUp
 							? 'bg-red-50 text-red-500'
 							: isDown

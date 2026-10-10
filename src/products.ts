@@ -1,3 +1,10 @@
+export type Market = {
+	market: string;
+	division: string;
+	min: number;
+	max: number;
+};
+
 export type Product = {
 	id: number;
 	slug: string;
@@ -6,8 +13,10 @@ export type Product = {
 	image: string;
 	unit: string;
 	price: number;
+	yesterday: number;
 	change: number;
 	direction: 'up' | 'down' | 'same';
+	markets: Market[];
 };
 
 export type Category = {
@@ -15,6 +24,13 @@ export type Category = {
 	slug: string;
 	name: string;
 	icon: string;
+};
+
+export const UNIT_LABELS: Record<string, string> = {
+	kg: 'প্রতি কেজি',
+	litre: 'প্রতি লিটার',
+	dozen: 'প্রতি ডজন',
+	piece: 'প্রতি পিস',
 };
 
 const PRODUCTS_API_URL = 'https://api.abcz.workers.dev/api/bazardor/products';
@@ -29,7 +45,9 @@ function toProduct(item: {
 	image: string;
 	unit: string;
 	today: number;
+	yesterday: number;
 	change: { dir: 'up' | 'down' | 'same' | 'flat'; pct: number };
+	markets: Market[];
 }): Product {
 	return {
 		id: item.id,
@@ -39,8 +57,10 @@ function toProduct(item: {
 		image: item.image || '',
 		unit: item.unit,
 		price: item.today,
+		yesterday: item.yesterday,
 		change: item.change.pct,
 		direction: item.change.dir === 'flat' ? 'same' : item.change.dir,
+		markets: item.markets ?? [],
 	};
 }
 

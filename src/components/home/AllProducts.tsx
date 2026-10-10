@@ -5,10 +5,10 @@ export default function AllProducts({ products }: { products: Product[] }) {
 	return (
 		<section id="all-products" className="scroll-mt-36">
 			<div className="mb-4">
-				<h2 className="text-lg font-extrabold text-[#202821]">
+				<h2 className="text-xl font-extrabold text-[#202821]">
 					সব পণ্য
 				</h2>
-				<p className="mt-1 text-xs text-[#68746c]">
+				<p className="mt-1 text-sm text-[#68746c]">
 					মোট {products.length.toLocaleString('bn-BD')}টি পণ্য
 				</p>
 			</div>

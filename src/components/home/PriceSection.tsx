@@ -17,7 +17,7 @@ export default function PriceSection({ title, direction, products }: Props) {
 
 	return (
 		<section>
-			<h2 className="mb-4 flex items-center gap-2 text-lg font-extrabold text-[#202821]">
+			<h2 className="mb-4 flex items-center gap-2 text-xl font-extrabold text-[#202821]">
 				<span className={isUp ? 'text-red-500' : 'text-[#07964a]'}>
 					{isUp ? '▲' : '▼'}
 				</span>

@@ -1,15 +1,12 @@
 import Image from 'next/image';
+import CurrentDate from '../CurrentDate';
 
 export default function Hero() {
-	const date = new Date().toLocaleDateString('bn-BD', {
-		dateStyle: 'full',
-	});
-
 	return (
 		<section className="flex min-h-[250px] flex-col items-center justify-between gap-6 rounded-3xl border border-[#dfe8e0] bg-[#f9fcfa] px-5 py-7 sm:flex-row sm:px-8 lg:px-10">
 			<div className="max-w-2xl">
 				<span className="inline-flex rounded-full bg-[#e1f2e6] px-3 py-1 text-sm font-semibold text-[#078b45]">
-					{date}
+					<CurrentDate />
 				</span>
 
 				<h1 className="mt-4 text-2xl font-extrabold leading-tight tracking-tight text-[#202821] sm:text-3xl lg:text-4xl">

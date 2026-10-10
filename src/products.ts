@@ -81,18 +81,13 @@ export async function getProducts(): Promise<Product[]> {
 }
 
 export async function getProductsByCategory(slug: string): Promise<Product[]> {
-	try {
-		const res = await fetch(`${PRODUCTS_API_URL}?category=${slug}`, {
-			next: { revalidate: 300 },
-		});
+	const res = await fetch(`${PRODUCTS_API_URL}?category=${slug}`, {
+		next: { revalidate: 300 },
+	}).catch(() => null);
 
-		if (res.ok) {
-			const items = await res.json();
-			return items.map(toProduct);
-		}
-	} catch {
-		const all = await getProducts();
-		return all.filter(item => item.category === slug);
+	if (res?.ok) {
+		const items = await res.json();
+		return items.map(toProduct);
 	}
 
 	const all = await getProducts();

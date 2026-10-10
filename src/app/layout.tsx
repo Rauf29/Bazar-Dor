@@ -21,10 +21,7 @@ export default function RootLayout({ children }: LayoutProps<'/'>) {
 			suppressHydrationWarning
 			className={`${notoSerifBengali.className} h-full antialiased`}
 		>
-			<body
-				suppressHydrationWarning
-				className="flex min-h-full flex-col bg-[#eff5f0] text-[#202821]"
-			>
+			<body className="flex min-h-full flex-col bg-[#eff5f0] text-[#202821]">
 				<Header />
 
 				<Marquee />

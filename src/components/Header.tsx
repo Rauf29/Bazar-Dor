@@ -2,11 +2,9 @@ import { getCategories } from '@/products';
 import Image from 'next/image';
 import Link from 'next/link';
 import AccountMenu from './AccountMenu';
+import CurrentDate from './CurrentDate';
 
 export default async function Header() {
-	const date = new Date().toLocaleDateString('bn-BD', {
-		dateStyle: 'full',
-	});
 	const categories = await getCategories();
 	return (
 		<header className="sticky top-0 z-50 w-full bg-[#f9fcfa] text-[#202821]">
@@ -27,7 +25,7 @@ export default async function Header() {
 								বাজার দর
 							</span>
 							<span className="mt-0.5 text-xs leading-4 text-[#68746c]">
-								{date}
+								<CurrentDate />
 							</span>
 						</span>
 					</Link>

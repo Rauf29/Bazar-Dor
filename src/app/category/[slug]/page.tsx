@@ -3,6 +3,11 @@ import { getCategories, getProductsByCategory } from '@/products';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 
+export async function generateStaticParams() {
+	const categories = await getCategories();
+	return categories.map(category => ({ slug: category.slug }));
+}
+
 const CategoryPage = async ({
 	params,
 	searchParams,

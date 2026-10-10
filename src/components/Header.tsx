@@ -1,6 +1,7 @@
 import { getCategories } from '@/products';
 import Image from 'next/image';
 import Link from 'next/link';
+import AccountMenu from './AccountMenu';
 
 export default async function Header() {
 	const date = new Date().toLocaleDateString('bn-BD', {
@@ -31,21 +32,7 @@ export default async function Header() {
 						</span>
 					</Link>
 
-					<div className="flex items-center gap-4">
-						<Link
-							href="/sign-in"
-							className="text-base font-semibold transition-colors hover:text-[#078b45]"
-						>
-							সাইন ইন
-						</Link>
-
-						<Link
-							href="/sign-up"
-							className="rounded-lg bg-[#078b45] px-5 py-2.5 text-base font-semibold text-white shadow-[0_3px_0_#066a36] transition-colors hover:bg-[#06783c]"
-						>
-							সাইন আপ
-						</Link>
-					</div>
+					<AccountMenu />
 				</div>
 			</div>
 

@@ -23,6 +23,7 @@ export const auth = betterAuth({
 		accountLinking: {
 			enabled: true,
 			trustedProviders: ['google', 'github'],
+			requireLocalEmailVerified: false,
 		},
 	},
 	database: mongodbAdapter(db, {

@@ -19,11 +19,20 @@ export const auth = betterAuth({
 			clientSecret: process.env.GITHUB_CLIENT_SECRET as string,
 		},
 	},
+	account: {
+		accountLinking: {
+			enabled: true,
+			trustedProviders: ['google', 'github'],
+		},
+	},
+	account: {
+		accountLinking: {
+			enabled: true,
+			trustedProviders: ['google', 'github'],
+			requireLocalEmailVerified: false,
+		},
+	},
 	database: mongodbAdapter(db, {
 		client,
 	}),
-	trustedOrigins: [
-		'http://localhost:3000',
-		'https://bazar-dor-rauf10.vercel.app',
-	],
 });

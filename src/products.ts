@@ -33,9 +33,9 @@ export const UNIT_LABELS: Record<string, string> = {
 	piece: 'প্রতি পিস',
 };
 
-const PRODUCTS_API_URL = 'https://api.abcz.workers.dev/api/bazardor/products';
+const PRODUCTS_API_URL = 'https://openapi.programming-hero.com/api/bazardor/products';
 const CATEGORIES_API_URL =
-	'https://api.abcz.workers.dev/api/bazardor/categories';
+	'https://openapi.programming-hero.com/api/bazardor/categories';
 
 function toProduct(item: {
 	id: number;

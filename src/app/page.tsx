@@ -1,7 +1,9 @@
 import AllProducts from '@/components/home/AllProducts';
 import Hero from '@/components/home/Hero';
 import PriceSection from '@/components/home/PriceSection';
+import LoginSuccessToast from '@/components/LoginSuccessToast';
 import { getProducts } from '@/products';
+import { Suspense } from 'react';
 
 export default async function HomePage() {
 	const products = await getProducts();
@@ -23,6 +25,10 @@ export default async function HomePage() {
 			/>
 
 			<AllProducts products={products} />
+
+			<Suspense>
+				<LoginSuccessToast />
+			</Suspense>
 		</main>
 	);
 }

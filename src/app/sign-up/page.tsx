@@ -29,12 +29,11 @@ const SignUpPage = () => {
 			name: user.name,
 			email: user.email,
 			password: user.password,
-			callbackURL: '/',
 		});
 
 		if (data) {
 			toast.success('অ্যাকাউন্ট তৈরি হয়েছে');
-			setTimeout(() => router.push('/'), 1000);
+			router.push('/');
 		}
 
 		if (error) {
@@ -43,15 +42,25 @@ const SignUpPage = () => {
 	};
 
 	const handleGoogleSignIn = async () => {
-		await authClient.signIn.social({
+		const { error } = await authClient.signIn.social({
 			provider: 'google',
+			callbackURL: '/?login=success',
 		});
+
+		if (error) {
+			toast.error('Google দিয়ে সাইন ইন করা যায়নি');
+		}
 	};
 
 	const handleGithubSignIn = async () => {
-		await authClient.signIn.social({
+		const { error } = await authClient.signIn.social({
 			provider: 'github',
+			callbackURL: '/?login=success',
 		});
+
+		if (error) {
+			toast.error('GitHub দিয়ে সাইন ইন করা যায়নি');
+		}
 	};
 
 	return (

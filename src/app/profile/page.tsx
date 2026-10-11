@@ -3,12 +3,11 @@
 import { authClient } from '@/lib/auth-client';
 import Image from 'next/image';
 import Link from 'next/link';
-import React, { useState } from 'react';
+import React from 'react';
 import { toast } from 'react-toastify';
 
 export default function ProfilePage() {
 	const { data: session, isPending } = authClient.useSession();
-	const [message, setMessage] = useState('');
 
 	if (isPending) {
 		return (
@@ -38,7 +37,6 @@ export default function ProfilePage() {
 
 	const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
-		setMessage('');
 
 		const formData = new FormData(e.currentTarget);
 		const { error } = await authClient.updateUser({
@@ -46,11 +44,11 @@ export default function ProfilePage() {
 		});
 
 		if (error) {
-			setMessage('আপডেট হয়নি, আবার চেষ্টা করুন');
+			toast.error('আপডেট হয়নি, আবার চেষ্টা করুন');
 			return;
 		}
 
-		setMessage('নাম আপডেট হয়েছে');
+		toast.success('নাম আপডেট হয়েছে');
 	};
 
 	const signOut = async () => {
@@ -119,12 +117,6 @@ export default function ProfilePage() {
 							className="w-full rounded-lg border border-[#dfe8e0] bg-white px-4 py-2.5 text-sm text-[#202821] outline-none focus:border-[#078b45]"
 						/>
 					</div>
-
-					{message && (
-						<p className="text-[13px] font-semibold text-[#078b45]">
-							{message}
-						</p>
-					)}
 
 					<button
 						type="submit"
